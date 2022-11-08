@@ -1,8 +1,12 @@
-export interface Patient{
-    id?:number,
-    nome?:string,
-    cpf?:number,
-    endereco?:string
-    enderecoCom?:string
+export interface Paciente {
+    nome: string,
+    cpf: string,
+    email: string,
+    bairro: string,
+    cep: string,
+    cidadeId: number,
+    complemento: string,
+    logradouro: string,
+    numero: string
 
 }

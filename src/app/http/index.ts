@@ -1,7 +1,9 @@
 import Axios , {AxiosInstance} from 'axios'
 
 const httpClient:AxiosInstance = Axios.create({
-    baseURL:'http://localhost:8080'
+   // baseURL:'https://philips-challenge.herokuapp.com'
+   // baseURL:'http://localhost:3000'
+    baseURL:' http://localhost:3004'
 })
 
 export default httpClient

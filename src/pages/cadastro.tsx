@@ -5,12 +5,10 @@ export default function Cadastro() {
  const data = useContextData()
 
   return (
-    <div className={` `}>
-        <Layout title="Cadastro" subtitle="Cadastro">
+       <Layout title="Cadastro" >               
+            
                
-         <h1>{data.tema}</h1>
-        
         </Layout>     
-     </div>
+    
   )
 }

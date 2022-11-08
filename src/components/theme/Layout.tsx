@@ -1,49 +1,53 @@
 
-import Header from "./Header"
-import Sidebar from "./Sidebar"
-import Content from "./Content"
-import Footer from "./Footer"
+
 import useContextData from "../../datas/hook/UseContext"
-import ForceAuth from "./ForceAuth"
-
-
+import { iconLogout } from "../icons"
+import Breadcrumbs from "./Breadcrumbs"
+import DarkMode from "./DarkMode"
+import Footer from "./Footer"
+import MenuItem from "./MenuItem"
+import Sidebar from "./Sidebar"
 
 interface propsLayout {
-  title: string,
-  subtitle: string,
-  children?: any
+    title?: string,
+    children?: any
 }
-
-
 export default function Layout(props: propsLayout) {
-  const { DarkOn, tema } = useContextData();
+    const { DarkOn, tema } = useContextData()
 
-  return (
-    <ForceAuth>
-    <div className={` ${tema}  bg-gradient-to-t from-blue-200 to-blue-100 p-2
-        dark:bg-gradient-to-t  flex h-screen w-screen`}>
-      <Sidebar></Sidebar>
-      <div className={`
-          flex flex-col bg-slate-100 text-gray-700
-          w-screen p-2  dark:bg-gray-900 dark:text-write
-          `}>
-        <Content>
-          <div className={`flex flex-grow`}>
-            <Header title={props.title} subtitle={props.subtitle} />
-          </div>
-          {props.children}
-        </Content>
+    return (
+        <div className={`flex ${tema} dark: bg-gradient-t  dark:from-slate-800 dark:to-slate-700 flex-col h-screen`}>
+            <div className="flex flex-row flex-grow gap-0">
+                <div className={` h-full flex flex-col border border-gray-300 `} >
+                    <div className=" sm:w-20 grow">
+                        <Sidebar />
+                    </div>
+                  
+                </div>
+                <div className={` flex flex-col flex-grow gap-2`}>
+                    <div className="flex flex-col">
+                        <Breadcrumbs msg={props.title} />
+                        {props.children}
+                    </div>
+                </div>
 
-        <div>
-          <Footer copyright="Power by Wagner S.">
+            </div>
+            <div className=" flex flex-col mb-0 border-t-2  dark:text-white dark:bg-gradient-to-t dark:from-blue-800  dark:to-blue-800">
+                <div className="  flex items-center justify-center">
+                    <div className={`flex`}>
+                        <Footer copyright="Copyright © 2022 Philips Labs ">
+                            <DarkMode tema={tema} alternarTema={DarkOn} />
+                        </Footer>
+
+                    </div>
 
 
-          </Footer>
+                </div>
+            </div>
+
+
+
         </div>
 
-
-      </div>
-    </div>
-    </ForceAuth>
-  )
+    )
 }

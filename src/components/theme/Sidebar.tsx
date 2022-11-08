@@ -1,31 +1,40 @@
 import { iconAdd, iconHome, iconLogout, iconUsers, logoIcon } from "../icons"
 import Router from "next/router"
 import Link from "next/link"
-import Menu from "./MenuItem"
+
 import Logo from "./Logo"
 import useContextData from "../../datas/hook/UseContext"
 import useAuth from "../../datas/hook/UseAuth"
+import MenuItem from "./MenuItem"
 
 
 export default function Sidebar(){
   const {logout} = useAuth()
+  const { DarkOn, tema } = useContextData()
      return(
-        <aside className={`flex flex-col xl:w-25 | p-1 lg:w-60 lg:m-1 `}>
-          <div className={`flex flex-col items-center justify-center w-full h-50 m-auto p-auto
-             `}>
-            <Logo url="data:image/png;base64,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"
-             heigth={`h-20 xl:h-${30}  `} width={`w-20  xl:w-${30}`} />
-          </div>
-          <ul className={`flex-grow`}>
-          <Menu url="/" text="Home" icon={iconHome} ></Menu>
-          <Menu url="/cadastro" text="Cadastro" icon={iconAdd} ></Menu>
-          <Menu url="/users" text="Patiets" icon={iconUsers} ></Menu>
+      <aside className={` h-full ${tema}
+      flex item-center dark:text-white dark:bg-gradient-to-t dark:from-blue-600  dark:to-blue-600 
+      border-solid   flex-col  border-gray-300`}>
+        <div className={`p-2`}>
+        <Logo
+        mode={tema}
+        url="https://www.philips.com.br/c-etc/philips/clientlibs/foundation-general/clientlibs-css-rb2014/images/generic/philips-footer-logo.svg"
+        urlDark="https://philips.vtexassets.com/arquivos/trop-logo-footer.png"
+        with={60}
+         height={'h-80'}
+         href="https://www.philips.com.br/healthcare/resources/landing/solucao-tasy"
+         />
+
+        </div>
+          <ul className={`h-full flex-grow`}>            
+          <MenuItem url="/" text="Home" icon={iconHome} ></MenuItem>
+          <MenuItem url="/cadastro" text="Cadastro" icon={iconAdd} ></MenuItem>
+          <MenuItem url="/users" text="Patiets" icon={iconUsers} ></MenuItem>
           </ul>
 
           <u>
-            <Menu onClick={()=> logout()} icon={iconLogout}
-            className={`text-red-900 font-bold hover:bg-slate-400`} 
-            text="logout"/>
+            <MenuItem onClick={()=> logout()} icon={iconLogout}
+             text="logout"/>
           </u>
 
 

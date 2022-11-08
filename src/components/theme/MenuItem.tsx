@@ -5,7 +5,7 @@ interface propsMenu {
     text: string,
     icon: any,
     className?:string,
-    onClick?:(e:any)=>void
+    onClick?: (evento: any) => void
 }
 
 export default function MenuItem(props: propsMenu) {
